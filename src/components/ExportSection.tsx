@@ -921,24 +921,30 @@ Generated with Portfolio Generator
 
   return (
     <div className="card">
-      <h3 className="text-lg font-semibold text-gray-900 mb-4">Export Portfolio</h3>
-      <p className="text-sm text-gray-600 mb-6">
+      <div className="flex items-center space-x-3 mb-6">
+        <div className="p-2 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-xl floating-animation">
+          <Download className="w-5 h-5 text-white" />
+        </div>
+        <h3 className="text-xl font-bold gradient-text-secondary">Export Portfolio</h3>
+      </div>
+      <p className="text-gray-600 mb-8 text-center">
         Download your portfolio in different formats to deploy or share.
       </p>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         <button
           onClick={downloadZip}
-          className="w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg"
+          className="download-btn w-full flex items-center justify-center space-x-3 group"
         >
-          <Archive className="w-5 h-5" />
-          <span>Download Complete Portfolio (ZIP)</span>
+          <Archive className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
+          <span className="text-lg font-semibold">Download Complete Portfolio (ZIP)</span>
+          <div className="w-2 h-2 bg-white rounded-full pulse-animation"></div>
         </button>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <button
             onClick={downloadHTML}
-            className="btn-primary flex items-center justify-center space-x-2"
+            className="btn-primary flex items-center justify-center space-x-2 hover-lift"
           >
             <Code className="w-4 h-4" />
             <span>HTML Only</span>
@@ -946,7 +952,7 @@ Generated with Portfolio Generator
 
           <button
             onClick={downloadJSON}
-            className="btn-secondary flex items-center justify-center space-x-2"
+            className="btn-secondary flex items-center justify-center space-x-2 hover-lift"
           >
             <FileText className="w-4 h-4" />
             <span>Data (JSON)</span>
@@ -955,20 +961,37 @@ Generated with Portfolio Generator
 
         <button
           onClick={downloadReadme}
-          className="w-full btn-secondary flex items-center justify-center space-x-2"
+          className="w-full btn-secondary flex items-center justify-center space-x-2 hover-lift"
         >
           <FileText className="w-4 h-4" />
           <span>Download README</span>
         </button>
       </div>
 
-      <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
-        <h4 className="font-medium text-blue-900 mb-2">🚀 Deployment Tips</h4>
-        <ul className="text-sm text-blue-800 space-y-1">
-          <li>• <strong>ZIP Download:</strong> Complete portfolio with HTML, CSS, JS, and README</li>
-          <li>• <strong>Free Hosting:</strong> GitHub Pages, Netlify, or Vercel</li>
-          <li>• <strong>Custom Domain:</strong> Connect your own domain name</li>
-          <li>• <strong>Backup:</strong> Save JSON file to restore your data later</li>
+      <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 rounded-2xl border border-blue-200 hover-lift">
+        <div className="flex items-center space-x-3 mb-4">
+          <div className="p-2 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-xl floating-animation">
+            <Palette className="w-5 h-5 text-white" />
+          </div>
+          <h4 className="font-bold text-blue-900 text-lg gradient-text-accent">🚀 Deployment Tips</h4>
+        </div>
+        <ul className="text-sm text-blue-800 space-y-3">
+          <li className="flex items-start space-x-3">
+            <span className="text-green-500 font-bold">✓</span>
+            <span><strong>ZIP Download:</strong> Complete portfolio with HTML, CSS, JS, and README</span>
+          </li>
+          <li className="flex items-start space-x-3">
+            <span className="text-green-500 font-bold">✓</span>
+            <span><strong>Free Hosting:</strong> GitHub Pages, Netlify, or Vercel</span>
+          </li>
+          <li className="flex items-start space-x-3">
+            <span className="text-green-500 font-bold">✓</span>
+            <span><strong>Custom Domain:</strong> Connect your own domain name</span>
+          </li>
+          <li className="flex items-start space-x-3">
+            <span className="text-green-500 font-bold">✓</span>
+            <span><strong>Backup:</strong> Save JSON file to restore your data later</span>
+          </li>
         </ul>
       </div>
     </div>

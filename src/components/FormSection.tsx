@@ -1,5 +1,6 @@
 import React from 'react';
 import { PortfolioData } from '../types/portfolio';
+import { User, Link, Zap, Briefcase, Rocket, GraduationCap, Award, MessageCircle, Star, Palette } from 'lucide-react';
 import PersonalInfoForm from './forms/PersonalInfoForm';
 import SkillsForm from './forms/SkillsForm';
 import ExperienceForm from './forms/ExperienceForm';
@@ -19,16 +20,16 @@ interface FormSectionProps {
 }
 
 const sections = [
-  { id: 'personal', label: 'Personal Info', icon: '👤' },
-  { id: 'social', label: 'Social Links', icon: '🔗' },
-  { id: 'skills', label: 'Skills', icon: '⚡' },
-  { id: 'experience', label: 'Experience', icon: '💼' },
-  { id: 'projects', label: 'Projects', icon: '🚀' },
-  { id: 'education', label: 'Education', icon: '🎓' },
-  { id: 'certifications', label: 'Certifications', icon: '🏆' },
-  { id: 'testimonials', label: 'Testimonials', icon: '💬' },
-  { id: 'achievements', label: 'Achievements', icon: '⭐' },
-  { id: 'theme', label: 'Theme', icon: '🎨' },
+  { id: 'personal', label: 'Personal Info', icon: User, color: 'from-blue-500 via-cyan-500 to-teal-500' },
+  { id: 'social', label: 'Social Links', icon: Link, color: 'from-purple-500 via-pink-500 to-rose-500' },
+  { id: 'skills', label: 'Skills', icon: Zap, color: 'from-yellow-500 via-orange-500 to-red-500' },
+  { id: 'experience', label: 'Experience', icon: Briefcase, color: 'from-green-500 via-emerald-500 to-teal-500' },
+  { id: 'projects', label: 'Projects', icon: Rocket, color: 'from-red-500 via-pink-500 to-purple-500' },
+  { id: 'education', label: 'Education', icon: GraduationCap, color: 'from-indigo-500 via-blue-500 to-cyan-500' },
+  { id: 'certifications', label: 'Certifications', icon: Award, color: 'from-amber-500 via-yellow-500 to-orange-500' },
+  { id: 'testimonials', label: 'Testimonials', icon: MessageCircle, color: 'from-teal-500 via-cyan-500 to-blue-500' },
+  { id: 'achievements', label: 'Achievements', icon: Star, color: 'from-pink-500 via-rose-500 to-red-500' },
+  { id: 'theme', label: 'Theme', icon: Palette, color: 'from-violet-500 via-purple-500 to-indigo-500' },
 ];
 
 const FormSection: React.FC<FormSectionProps> = ({
@@ -115,31 +116,39 @@ const FormSection: React.FC<FormSectionProps> = ({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 h-full">
       {/* Navigation */}
       <div className="card">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Portfolio Sections</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
-          {sections.map((section) => (
+        <div className="flex items-center space-x-3 mb-6">
+          <div className="p-2 bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl">
+            <Palette className="w-5 h-5 text-white" />
+          </div>
+          <h2 className="text-xl font-bold gradient-text">Portfolio Sections</h2>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          {sections.map((section, index) => (
             <button
               key={section.id}
               onClick={() => setActiveSection(section.id)}
-              className={`p-3 rounded-lg text-sm font-medium transition-colors duration-200 ${
-                activeSection === section.id
-                  ? 'bg-primary-100 text-primary-700 border-2 border-primary-300'
-                  : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border-2 border-transparent'
+              className={`nav-item group ${
+                activeSection === section.id ? 'active' : ''
               }`}
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
-              <div className="text-lg mb-1">{section.icon}</div>
-              <div>{section.label}</div>
+              <div className={`p-2 rounded-lg bg-gradient-to-r ${section.color} transition-all duration-300 group-hover:scale-110`}>
+                <section.icon className="w-4 h-4 text-white" />
+              </div>
+              <div className="text-xs font-medium text-center">{section.label}</div>
             </button>
           ))}
         </div>
       </div>
 
       {/* Form Content */}
-      <div className="card">
-        {renderForm()}
+      <div className="card flex-1 min-h-0">
+        <div className="fade-in">
+          {renderForm()}
+        </div>
       </div>
     </div>
   );

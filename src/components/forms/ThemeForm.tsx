@@ -1,6 +1,7 @@
 import React from 'react';
 import { Theme } from '../../types/portfolio';
 import { templates } from '../../data/templates';
+import { Palette } from 'lucide-react';
 
 interface ThemeFormProps {
   data: Theme;
@@ -81,41 +82,53 @@ const ThemeForm: React.FC<ThemeFormProps> = ({ data, updateData }) => {
 
       {/* Template Selection */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
-          Choose a Template
-        </label>
+        <div className="flex items-center space-x-3 mb-6">
+          <div className="p-2 bg-gradient-to-r from-violet-500 to-purple-500 rounded-xl">
+            <Palette className="w-5 h-5 text-white" />
+          </div>
+          <h3 className="text-xl font-bold gradient-text">Choose a Template</h3>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {templates.map((template) => (
+          {templates.map((template, index) => (
             <button
               key={template.id}
               onClick={() => handleTemplateSelect(template.id)}
-              className={`p-4 rounded-lg border-2 text-left transition-all duration-200 ${
-                data.template === template.id
-                  ? 'border-primary-500 bg-primary-50'
-                  : 'border-gray-200 hover:border-gray-300'
+              className={`template-card group ${
+                data.template === template.id ? 'selected' : ''
               }`}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="flex items-center space-x-3 mb-2">
-                <span className="text-2xl">{template.preview}</span>
-                <div>
-                  <div className="font-medium text-gray-900">{template.name}</div>
+              <div className="flex items-center space-x-4 mb-4">
+                <div className="text-3xl group-hover:scale-110 transition-transform duration-300">
+                  {template.preview}
+                </div>
+                <div className="flex-1">
+                  <div className="font-bold text-gray-900 text-lg mb-1">{template.name}</div>
                   <div className="text-sm text-gray-600">{template.description}</div>
                 </div>
               </div>
               <div className="flex space-x-2">
                 <div
-                  className="w-4 h-4 rounded-full"
+                  className="w-6 h-6 rounded-full shadow-md group-hover:scale-110 transition-transform duration-300"
                   style={{ backgroundColor: template.colors.primary }}
+                  title="Primary Color"
                 ></div>
                 <div
-                  className="w-4 h-4 rounded-full"
+                  className="w-6 h-6 rounded-full shadow-md group-hover:scale-110 transition-transform duration-300"
                   style={{ backgroundColor: template.colors.secondary }}
+                  title="Secondary Color"
                 ></div>
                 <div
-                  className="w-4 h-4 rounded-full"
+                  className="w-6 h-6 rounded-full shadow-md group-hover:scale-110 transition-transform duration-300"
                   style={{ backgroundColor: template.colors.accent }}
+                  title="Accent Color"
                 ></div>
               </div>
+              {data.template === template.id && (
+                <div className="absolute top-2 right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs">✓</span>
+                </div>
+              )}
             </button>
           ))}
         </div>

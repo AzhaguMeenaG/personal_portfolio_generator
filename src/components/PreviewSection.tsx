@@ -352,28 +352,45 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({ portfolioData }) => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6 h-full">
       <div className="card">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">Live Preview</h3>
-          <div className="flex items-center space-x-2">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 rounded-xl floating-animation">
+              <Eye className="w-5 h-5 text-white" />
+            </div>
+            <h3 className="text-xl font-bold gradient-text">Live Preview</h3>
+          </div>
+          <div className="flex items-center space-x-2 bg-gray-100 rounded-xl p-1">
             <button
               onClick={() => setViewMode('mobile')}
-              className={`p-2 rounded ${viewMode === 'mobile' ? 'bg-primary-100 text-primary-700' : 'text-gray-600 hover:bg-gray-100'}`}
+              className={`p-3 rounded-lg transition-all duration-300 ${
+                viewMode === 'mobile' 
+                  ? 'bg-white shadow-lg text-primary-600 scale-105' 
+                  : 'text-gray-600 hover:bg-white/50 hover:scale-105'
+              }`}
               title="Mobile View"
             >
               <Smartphone className="w-4 h-4" />
             </button>
             <button
               onClick={() => setViewMode('tablet')}
-              className={`p-2 rounded ${viewMode === 'tablet' ? 'bg-primary-100 text-primary-700' : 'text-gray-600 hover:bg-gray-100'}`}
+              className={`p-3 rounded-lg transition-all duration-300 ${
+                viewMode === 'tablet' 
+                  ? 'bg-white shadow-lg text-primary-600 scale-105' 
+                  : 'text-gray-600 hover:bg-white/50 hover:scale-105'
+              }`}
               title="Tablet View"
             >
               <Monitor className="w-4 h-4" />
             </button>
             <button
               onClick={() => setViewMode('desktop')}
-              className={`p-2 rounded ${viewMode === 'desktop' ? 'bg-primary-100 text-primary-700' : 'text-gray-600 hover:bg-gray-100'}`}
+              className={`p-3 rounded-lg transition-all duration-300 ${
+                viewMode === 'desktop' 
+                  ? 'bg-white shadow-lg text-primary-600 scale-105' 
+                  : 'text-gray-600 hover:bg-white/50 hover:scale-105'
+              }`}
               title="Desktop View"
             >
               <Monitor className="w-5 h-5" />
@@ -381,13 +398,16 @@ const PreviewSection: React.FC<PreviewSectionProps> = ({ portfolioData }) => {
           </div>
         </div>
         
-        <div className="border border-gray-300 rounded-lg overflow-hidden">
-          <div className={`bg-gray-100 p-2 text-center text-sm text-gray-600 ${getViewportClass()}`}>
-            <Eye className="w-4 h-4 inline mr-1" />
-            Preview Mode
+        <div className="preview-container">
+          <div className={`bg-gradient-to-r from-gray-100 to-gray-200 p-3 text-center text-sm text-gray-600 rounded-t-xl ${getViewportClass()}`}>
+            <div className="flex items-center justify-center space-x-2">
+              <Eye className="w-4 h-4" />
+              <span className="font-medium">Live Preview</span>
+              <div className="w-2 h-2 bg-green-500 rounded-full pulse-animation"></div>
+            </div>
           </div>
-          <div className="overflow-auto max-h-96">
-            <div className={getViewportClass()}>
+          <div className="overflow-auto max-h-[600px] rounded-b-xl">
+            <div className={`transition-all duration-500 ${getViewportClass()}`}>
               {renderPreview()}
             </div>
           </div>
